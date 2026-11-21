@@ -1,4 +1,4 @@
-// roadmap.js — the platinum roadmap: five phases built from the official
+// roadmap.js — the platinum roadmap: six phases built from the official
 // descriptions, per-phase progress, the missable alerts, and the Next up list
 // (the next unearned trophies in roadmap order).
 import { getTrophy, isEarned, missableTrophies, trophiesInRoadmapOrder, hiddenCount } from './state.js';
