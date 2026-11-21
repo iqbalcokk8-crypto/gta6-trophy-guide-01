@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE CITY — PLATINUM OPERATIONS · GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="An offline trophy command center for Grand Theft Auto VI on PlayStation 5: all 55 official trophies, a saved checklist, a platinum roadmap, missable flags, spoiler protection, and a guide for every trophy that cites its sources.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">
+    <p class="kicker">Grand Theft Auto VI · PlayStation 5 · Offline guide &amp; tracker</p>
+    <h1>VICE CITY <span>— Platinum Operations</span></h1>
+    <p class="tagline">A trophy command center for the road to the platinum. Every trophy is named as PlayStation publishes it; every guide says where its facts come from.</p>
+  </div>
+  <div class="masthead-progress" id="masthead-progress" aria-label="Overall progress">
+    <p class="big-count"><span id="earned-count">0</span><span class="of"> / 55</span></p>
+    <p class="big-label">trophies earned</p>
+    <div class="progress-track"><div class="progress-fill" id="overall-fill"></div></div>
+    <p class="progress-note" id="overall-note">Platinum 0 of 1 · Gold 0 of 2 · Silver 0 of 6 · Bronze 0 of 46</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <button type="button" class="tab is-active" data-view="dashboard">Command Center</button>
+  <button type="button" class="tab" data-view="tracker">Trophy Tracker</button>
+  <button type="button" class="tab" data-view="roadmap">Platinum Roadmap</button>
+  <button type="button" class="tab" data-view="guide">Guide</button>
+  <button type="button" class="tab" data-view="backup">Backup &amp; Settings</button>
+</nav>
+
+<main>
+  <p class="data-notice" id="data-notice" hidden></p>
+  <section class="view is-visible" id="view-dashboard" aria-label="Command center">
+    <div class="grid-dashboard">
+      <article class="card" id="card-progress">
+        <h2>Progress</h2>
+        <p class="stat-line"><strong id="dash-earned">0</strong> of 55 earned · <strong id="dash-remaining">55</strong> remaining</p>
+        <div class="grade-bars" id="grade-bars"></div>
+      </article>
+      <article class="card" id="card-hidden">
+        <h2>Hidden trophies</h2>
+        <p class="stat-line"><strong id="hidden-count">0</strong> of 55 are hidden on PlayStation until earned</p>
+        <p class="muted" id="hidden-note">Hidden flags are set from the official list (Exophase / PSNProfiles). A hidden trophy stays masked here until you earn it.</p>
+        <p class="stat-line">Spoiler shield: <strong id="spoiler-state">ON</strong> — story trophy names &amp; descriptions stay hidden until earned.</p>
+      </article>
+      <article class="card" id="card-roadmap">
+        <h2>Roadmap status</h2>
+        <div id="roadmap-status"></div>
+      </article>
+      <article class="card alert-card" id="card-missable">
+        <h2>Missable alerts</h2>
+        <div id="missable-alerts"></div>
+      </article>
+      <article class="card wide" id="card-next">
+        <h2>Next up</h2>
+        <div id="next-up"></div>
+      </article>
+      <article class="card wide" id="card-audit">
+        <h2>Data audit</h2>
+        <div id="audit-strip"></div>
+        <div id="reference-matrix"></div>
+        <p class="muted">Counts are checked live against the official list every time the app loads. A failed check shows here — never silently.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="view" id="view-tracker" aria-label="Trophy tracker">
+    <div class="tracker-toolbar" id="tracker-toolbar">
+      <label class="search-box">Search
+        <input type="search" id="search-input" placeholder="Name, description or #id…" autocomplete="off">
+      </label>
+      <fieldset class="kind-filters" id="kind-filters">
+        <legend>Kind</legend>
+        <label><input type="radio" name="kind" value="all" checked> All</label>
+        <label><input type="radio" name="kind" value="story"> Story</label>
+        <label><input type="radio" name="kind" value="missable"> Missable</label>
+        <label><input type="radio" name="kind" value="collectibles"> Collectibles</label>
+        <label><input type="radio" name="kind" value="activities"> Activities</label>
+        <label><input type="radio" name="kind" value="online"> Online</label>
+      </fieldset>
+      <label class="grade-filter">Grade
+        <select id="grade-select">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="switch-row"><input type="checkbox" id="earned-only"> Earned only</label>
+      <label class="switch-row"><input type="checkbox" id="hide-earned"> Hide earned</label>
+    </div>
+    <p class="tracker-count" id="tracker-count"></p>
+    <ol class="trophy-list" id="trophy-list"></ol>
+    <p class="empty-note" id="tracker-empty" hidden>No trophies match these filters. Clear the search or pick another kind.</p>
+  </section>
+
+  <section class="view" id="view-roadmap" aria-label="Platinum roadmap">
+    <p class="intro">The road to the platinum, in six phases, built from the official trophy descriptions alone — story first, then character questlines and strangers, then activities and skills, then collectibles and exploration, then robberies and money, and finally the still-unconfirmed trophies, 100% completion and the platinum. Missable windows are flagged where the sources prove one; none is assumed.</p>
+    <div id="roadmap-phases"></div>
+  </section>
+
+  <section class="view" id="view-guide" aria-label="Trophy guide">
+    <div class="guide-layout">
+      <aside class="guide-picker" aria-label="Pick a trophy">
+        <label>Jump to a trophy
+          <select id="guide-select"></select>
+        </label>
+        <p class="muted">Pick any trophy — or tick one off in the Tracker and open it from there. The guide and its evidence sit side by side.</p>
+        <div class="guide-nav">
+          <button type="button" id="guide-prev">← Previous</button>
+          <button type="button" id="guide-next">Next →</button>
+        </div>
+      </aside>
+      <article class="guide-pane" id="guide-pane" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="view" id="view-backup" aria-label="Backup and settings">
+    <div class="grid-backup">
+      <article class="card">
+        <h2>Spoiler shield</h2>
+        <label class="switch-row big"><input type="checkbox" id="spoiler-toggle" checked> Hide story trophy names &amp; descriptions until earned</label>
+        <p class="muted">On by default. Hidden trophies (PlayStation's own flag) stay masked until earned no matter what this switch says. Turning the shield off reveals story names and descriptions — the guides stay behind the same shield until you earn the trophy.</p>
+      </article>
+      <article class="card">
+        <h2>Backup your progress</h2>
+        <p class="muted">Your checklist lives in this browser only (localStorage). Export it before you clear browser data — and import it back the same way.</p>
+        <div class="button-row">
+          <button type="button" id="export-button">Export progress (.json)</button>
+          <label class="import-label">Import progress <input type="file" id="import-input" accept="application/json,.json"></label>
+        </div>
+        <p class="import-status" id="import-status" role="status"></p>
+      </article>
+      <article class="card danger">
+        <h2>Reset progress</h2>
+        <p class="muted">Clears every earned tick in this browser. This asks for confirmation first and cannot be undone — export a backup before you do it.</p>
+        <button type="button" id="reset-button">Reset all progress</button>
+      </article>
+      <article class="card">
+        <h2>About the data</h2>
+        <p class="muted">Names, descriptions and grades are the official PlayStation 5 list as Exophase and PSNProfiles published it (both agree). Guides are written in our own words and cite their sources beside each guide. This app fetches nothing at runtime and works with the network off.</p>
+        <p class="muted">No Rockstar Games logo, artwork, box art or game screenshot appears anywhere in this guide — the look is our own.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>VICE CITY — Platinum Operations · an unofficial, offline fan-made guide for Grand Theft Auto VI trophies · not affiliated with Rockstar Games or PlayStation.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
